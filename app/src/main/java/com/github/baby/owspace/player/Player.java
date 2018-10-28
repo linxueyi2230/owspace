@@ -81,7 +81,11 @@ public class Player implements IPlayback,MediaPlayer.OnCompletionListener,MediaP
 
     @Override
     public boolean isPlaying() {
-        return mPlayer.isPlaying();
+        if (mPlayer !=null){
+            return mPlayer.isPlaying();
+        }
+
+        return false;
     }
 
     @Override
