@@ -1,10 +1,14 @@
 package com.github.baby.owspace.player;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
+import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
@@ -55,6 +59,7 @@ public class PlaybackService extends Service implements IPlayback,IPlayback.Call
         mPlayer.registerCallback(this);
         Logger.d("onCreate");
     }
+
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -164,17 +169,27 @@ public class PlaybackService extends Service implements IPlayback,IPlayback.Call
 
     @Override
     public void onComplete(PlayState state) {
-        showNotification(state);
+        showNotification();
     }
 
     @Override
     public void onPlayStatusChanged(PlayState status) {
-        showNotification(status);
+        showNotification();
     }
+
     /**
             * Show a notification while this service is running.
     */
-    private void showNotification(PlayState status) {
+    private void showNotification() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String channelId = "Player";
+            String name = "播放音乐";
+            NotificationChannel channel = new NotificationChannel(channelId, name, NotificationManager.IMPORTANCE_NONE);
+            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+            manager.createNotificationChannel(channel);
+        }
+
         // The PendingIntent to launch our activity if the user selects this notification
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0);
 
@@ -185,6 +200,7 @@ public class PlaybackService extends Service implements IPlayback,IPlayback.Call
                 .setContentIntent(contentIntent)  // The intent to send when the entry is clicked
                 .setCustomContentView(getSmallContentView())
                 .setPriority(NotificationCompat.PRIORITY_MAX)
+                .setChannelId("Player")
                 .setOngoing(true)
                 .build();
 
