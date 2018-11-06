@@ -13,26 +13,34 @@ android {
         applicationId "com.michaelss.owspace"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode Integer.parseInt(version)
-        versionName name
-//        signingConfig signingConfigs.config
+        versionCode 1
+        versionName "1.0"
         vectorDrawables.useSupportLibrary = true
+        flavorDimensions "versionCode"
+//        manifestPlaceholders = [
+//                jpush_appkey : "27e5c10b5d707c2b74e3eda2"
+//        ]
     }
     buildTypes {
         release {
             buildConfigField("boolean","API_ENV","true")
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//            signingConfig signingConfigs.config
         }
         debug {
             buildConfigField("boolean","API_ENV","false")
             minifyEnabled false
-//            signingConfig signingConfigs.config
         }
     }
+
     productFlavors {
+        xiaomi {}
+        huawei {}
+        wandoujia {}
+        vivo {}
+        baidu {}
     }
+
 }
 repositories{
     flatDir{
