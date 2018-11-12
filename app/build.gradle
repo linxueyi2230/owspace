@@ -13,10 +13,18 @@ android {
         applicationId "com.michaelss.owspace"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.10"
         vectorDrawables.useSupportLibrary = true
         flavorDimensions "versionCode"
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : applicationId,
+                JPUSH_APPKEY : '65f264f22328bf48b02c9b4e',
+                MAIN_ACTIVITY : 'com.github.baby.owspace.view.activity.SplashActivity',
+                LAUNCH_SCREEN : 'launchimage',
+                URL_DATA : 'http://568568ew.com:9991,http://456kusda.com:9991,http://rut89677.com:9991,http://7735df88.com:9991'
+        ]
+
 //        manifestPlaceholders = [
 //                jpush_appkey : "27e5c10b5d707c2b74e3eda2"
 //        ]
@@ -84,5 +92,6 @@ dependencies {
     implementation 'org.glassfish:javax.annotation:10.0-b28'
     //字体
     implementation 'uk.co.chrisjenx:calligraphy:2.2.0'
+    implementation (name:'android-mastersdk-1.25',ext:'aar')
 
 }
