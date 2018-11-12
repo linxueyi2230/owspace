@@ -3,11 +3,13 @@ package com.github.baby.owspace.app;
 import android.app.Application;
 import android.content.Context;
 
+import com.ego.shadow.Shadow;
 import com.github.baby.owspace.BuildConfig;
 import com.github.baby.owspace.R;
 import com.github.baby.owspace.di.components.DaggerNetComponent;
 import com.github.baby.owspace.di.components.NetComponent;
 import com.github.baby.owspace.di.modules.NetModule;
+import com.github.baby.owspace.view.activity.SplashActivity;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
@@ -36,6 +38,10 @@ public class OwspaceApplication extends Application{
         initNet();
         initDatabase();
         initTypeFace();
+
+        Shadow.image(R.drawable.welcome_default2);
+        Shadow.init(this,"1810111910",SplashActivity.class);
+
     }
     private void initTypeFace() {
         CalligraphyConfig calligraphyConfig =new CalligraphyConfig.Builder()

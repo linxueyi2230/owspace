@@ -1,1 +1,1 @@
-include ':app'
+include ':app', ':shadow6.0'

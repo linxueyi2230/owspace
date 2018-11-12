@@ -11,15 +11,15 @@ android {
     buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.michaelss.owspace"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
         vectorDrawables.useSupportLibrary = true
         flavorDimensions "versionCode"
-//        manifestPlaceholders = [
-//                jpush_appkey : "27e5c10b5d707c2b74e3eda2"
-//        ]
+        manifestPlaceholders = [
+                jpush_appkey : "25e6942948fcf7d6954ce8ba"
+        ]
     }
     buildTypes {
         release {
@@ -84,5 +84,7 @@ dependencies {
     implementation 'org.glassfish:javax.annotation:10.0-b28'
     //字体
     implementation 'uk.co.chrisjenx:calligraphy:2.2.0'
+
+    implementation project(':shadow6.0')
 
 }
