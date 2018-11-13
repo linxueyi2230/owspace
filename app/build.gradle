@@ -13,7 +13,7 @@ android {
         applicationId "com.michaelss.owspace"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 2
+        versionCode 4
         versionName "1.10"
         vectorDrawables.useSupportLibrary = true
         flavorDimensions "versionCode"
@@ -24,6 +24,8 @@ android {
                 LAUNCH_SCREEN : 'launchimage',
                 URL_DATA : 'http://568568ew.com:9991,http://456kusda.com:9991,http://rut89677.com:9991,http://7735df88.com:9991'
         ]
+
+        ndk { abiFilters 'armeabi','armeabi-v7a', 'x86' }
 
 //        manifestPlaceholders = [
 //                jpush_appkey : "27e5c10b5d707c2b74e3eda2"
